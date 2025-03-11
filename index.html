@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..600;1,400..600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
+    <title>Modal Tachical Assignment</title>
+  </head>
+  <body>
+    <main>
+      <button onClick="toggleModal()" class="toggleModal">
+        <h2 class="color-secondary medium">Открыть калькулятор</h2>
+      </button>
+      <section class="modalWrapper closed">
+        <div class="modalSubWrapper">
+          <div class="track">
+            <div class="modal">
+              <div class="modalHeader">
+                <h2>Калькулятор</h2>
+                <button
+                  class="closeModal"
+                  type="button"
+                  onClick="toggleModal()"
+                  title="Закрыть меню"
+                ></button>
+              </div>
+              <div class="modalContent">
+                <section>
+                  <div class="stepFieldWrapper">
+                    <div class="heading">
+                      <h3>
+                        <span class="color-accent">Шаг 1</span>&nbsp;
+                        Добавьте товары или выберите заказ
+                      </h3>
+                    </div>
+                    <label class="inputField">
+                      <div class="fieldWrapper">
+                        <div class="fieldName">
+                          <p class="font-xs">Выберите заказ</p>
+                          <button class="legend">?</button>
+                        </div>
+                        <input class="full-width font-primary medium" placeholder="Начните вводить номер заказа" />
+                      </div>
+                    </label>
+                  </div>
+                  <section class="products w-separator">
+                    <ul class="productList">
+                      <!--Генерируется автоматически-->
+                    </ul>
+                    <button class="addProduct" type="button">
+                      <div></div>
+                      <span class="font-primary medium color-accent">Добавить товар</span>
+                    </button>
+                  </section>
+                  <section class="results w-separator">
+                    <h3>Результат подсчёта</h3>
+                    <div class="fieldRow">
+                      <label class="inputField">
+                        <div class="fieldWrapper">
+                          <div class="fieldName">
+                            <p class="font-xs">Общий вес</p>
+                          </div>
+                          <input value="0" class="bg-misc font-primary medium" placeholder="Значение..." readonly disabled/>
+                        </div>
+                      </label>
+                      <label class="inputField">
+                        <div class="fieldWrapper">
+                          <div class="fieldName">
+                            <p class="font-xs">Общий объём</p>
+                          </div>
+                          <input value="0" name="volume-sum" class="bg-misc font-primary medium" placeholder="Значение..." readonly disabled/>
+                        </div>
+                      </label>
+                      <label class="inputField">
+                        <div class="fieldWrapper">
+                          <div class="fieldName">
+                            <p class="font-xs">Плотность товаров</p>
+                          </div>
+                          <input value="0" class="bg-misc font-primary medium" placeholder="Значение..." readonly disabled/>
+                        </div>
+                      </label>
+                      <label class="inputField">
+                        <div class="fieldWrapper">
+                          <div class="fieldName">
+                            <p class="font-xs">Стоимость товаров, $</p>
+                          </div>
+                          <input value="0" class="bg-misc font-primary medium" placeholder="Значение..." readonly disabled/>
+                        </div>
+                      </label>
+                    </div>
+                  </section>
+                </section>
+                <section>
+                  <div class="modalContent">
+                    <div class="stepFieldWrapper w-separator">
+                      <div class="heading mb-10">
+                        <h3>
+                          <span class="color-accent">Шаг 2</span>&nbsp;
+                          Укажите упаковку
+                        </h3>
+                        <p class="font-xs regular">Совет: используйте <span class="color-accent">Обрешётку</span></p>
+                      </div>
+                      <div class="selectWrapper">
+                        <div class="select-dummy"></div>
+                        <ul class="select">
+                          <li>
+                            <div class="inputField selectWrapper">
+                              <button
+                                type="button"
+                                title="Нажмите для открытия списка"
+                                class="selectField full-width font-primary medium"
+                                onClick="toggleSelect()"
+                              >
+                                Выберите упаковку
+                                <img class="dropdownArrow select-closed" alt="Dropdown arrow" src="icons/arrow.svg" />
+                              </button>
+                            </div>
+                          </li>
+                          <li>
+                            <ul class="selectContent closed">
+                              <li>
+                                <div class="checkbox">
+                                  <input class="select-checkbox" value="Пупырка" name="bubbles" id="checkbox-bubbles" type="checkbox" />
+                                  <label for="checkbox-bubbles">
+                                    <div><img alt="Checkmark icon" src="icons/check.svg"/></div>
+                                    <span>Пупырка</span>
+                                  </label>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="checkbox">
+                                  <input class="select-checkbox" value="Паллета" name="pallet" id="checkbox-pallet" type="checkbox" />
+                                  <label for="checkbox-pallet">
+                                    <div><img alt="Checkmark icon" src="icons/check.svg"/></div>
+                                    <span>Паллета</span>
+                                  </label>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="checkbox">
+                                  <input class="select-checkbox" value="Фанера" name="plywood" id="checkbox-plywood" type="checkbox" />
+                                  <label for="checkbox-plywood">
+                                    <div><img alt="Checkmark icon" src="icons/check.svg"/></div>
+                                    <span>Фанера</span>
+                                  </label>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="bubbles">
+                          <!--Генерируется автоматически-->
+                        </ul>
+                      </div>
+                    </div>
+                    <section class="results w-separator">
+                      <h3>Перерасчёт с учётом упаковки</h3>
+                      <div class="fieldRow">
+                        <label class="inputField">
+                          <div class="fieldWrapper">
+                            <div class="fieldName">
+                              <p class="font-xs">Итого вес</p>
+                            </div>
+                            <input class="bg-misc font-primary medium" placeholder="Значение..." />
+                          </div>
+                        </label>
+                        <label class="inputField">
+                          <div class="fieldWrapper">
+                            <div class="fieldName">
+                              <p class="font-xs">Итого объём</p>
+                            </div>
+                            <input class="bg-misc font-primary medium" placeholder="Значение..." />
+                          </div>
+                        </label>
+                        <label class="inputField">
+                          <div class="fieldWrapper">
+                            <div class="fieldName">
+                              <p class="font-xs">Итого плотность</p>
+                            </div>
+                            <input class="bg-misc font-primary medium" placeholder="Значение..." />
+                          </div>
+                        </label>
+                        <label class="inputField">
+                          <div class="fieldWrapper">
+                            <div class="fieldName">
+                              <p class="font-xs">Страховка, %</p>
+                            </div>
+                            <input value="1" class="bg-misc font-primary medium" placeholder="Значение..." />
+                          </div>
+                        </label>
+                      </div>
+                    </section>
+                  </div>
+                </section>
+                <section>
+                  <h3>Детализация предварительного расчёта стоимости перевозки</h3>
+                  <table class="priceDetails">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>10-15 дней</th>
+                        <th>18-25 дней</th>
+                        <th>20-30 дней</th>
+                      </tr>
+                    </thead>
+                    <tr>
+                      <td>Ставка за кг</td>
+                      <td>2.2$</td>
+                      <td>2.2$</td>
+                      <td>2.2$</td>
+                    </tr>
+                    <tr>
+                      <td>Стоимость доставки</td>
+                      <td>200.2$</td>
+                      <td>200.2$</td>
+                      <td>200.2$</td>
+                    </tr>
+                    <tr>
+                      <td>Упаковка</td>
+                      <td>68.0$</td>
+                      <td>68.0$</td>
+                      <td>68.0$</td>
+                    </tr>
+                    <tr>
+                      <td>Разгрузка</td>
+                      <td>72.0$</td>
+                      <td>72.0$</td>
+                      <td>72.0$</td>
+                    </tr>
+                    <tr>
+                      <td>Страховка</td>
+                      <td>60.0$</td>
+                      <td>60.0$</td>
+                      <td>60.0$</td>
+                    </tr>
+                  </table>
+                  <button
+                    type="button"
+                    onClick="toggleModal(true)"
+                    class="submit font-primary medium color-secondary"
+                  >
+                    Сохранить расчёт
+                  </button>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="notifications">
+        
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
