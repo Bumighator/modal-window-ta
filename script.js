@@ -98,15 +98,15 @@ const bubbleTemplate = (name, id) => {
   `
 }
 
-toastr.options = {
-  "positionClass": "toast-bottom-right",
-  "innerHtml": `
-    <div class="notification">
-      <h4 class="font-primary semibold">${status}</h4>
-      <p class="font-xs">${message}</p>
-    </div>
-  `
-}
+// toastr.options = {
+//   "positionClass": "toast-bottom-right",
+//   "innerHtml": `
+//     <div class="notification">
+//       <h4 class="font-primary semibold">${status}</h4>
+//       <p class="font-xs">${message}</p>
+//     </div>
+//   `
+// }
 
 function toggleModal(extra) {
   const modal = $(".modalWrapper") 
@@ -119,14 +119,14 @@ function toggleModal(extra) {
   else html.css("overflow-y", 'auto')
 
   // Симулируем деятельность кнопки "сохранить расчёт"
-  if (extra) $.toast({
-    heading: "Успех!",
-    text: "Расчёт сохранён",
-    bgColor: "#FFFFFF",
-    textColor: "#3D3D3D",
-    loader: false,
-    position: "bottom-right"
-  })
+  // if (extra) $.toast({
+  //   heading: "Успех!",
+  //   text: "Расчёт сохранён",
+  //   bgColor: "#FFFFFF",
+  //   textColor: "#3D3D3D",
+  //   loader: false,
+  //   position: "bottom-right"
+  // })
 }
 
 const list = $(".productList")
@@ -156,7 +156,7 @@ function adjustIndexes(deletedIndex) {
 
   $(`#checkbox-${deletedIndex + 1}`).prop("for", `checkbox-${deletedIndex + 1}`)
   // Убрать из комментария строчку ниже, если требуется последовательное нумервоание товаров
-  // $('.product').eq(deletedIndex).find('span.productIndex').text(deletedIndex + 1)
+  $('.product').eq(deletedIndex).find('span.productIndex').text(deletedIndex + 1)
 }
 
 function calculateRowValues(index) {
@@ -221,7 +221,7 @@ $(document).ready(() => {
   // Рассчитываем объём во время ввода пользователем данных
   $(document).on("input", "input.fieldDimensions", function() {
     const index = $(this).parents().eq(4).index()
-
+    
     calculateRowValues(index)
   })
   // Управление выбором упаковки
